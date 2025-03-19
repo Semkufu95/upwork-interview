@@ -20,7 +20,7 @@ export const getDataById = async (req: Request, res: Response) => {
         });
 
         if (!data) {
-            return res.status(404).json({ error: "Data not found" });
+            res.status(404).json({ error: "Data not found" });
         }
         res.json(data);
     } catch (error) {
@@ -33,7 +33,7 @@ export const createData = async (req: Request, res: Response) => {
         const { name, value} = req.body;
         
         if (!name || !value) {
-            return res.status(400).json({ error: "Name and Value are Required" });
+            res.status(400).json({ error: "Name and Value are Required" });
         }
 
         const newData = await prisma.data.create({
